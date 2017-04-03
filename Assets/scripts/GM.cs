@@ -6,5 +6,6 @@ public class GM : MonoBehaviour {
 
     public void Setlives(int newValue){
         lives = newValue;
+
     }
 }

@@ -36,12 +36,8 @@ public class player : MonoBehaviour {
         if(transform.position.y < deadZone) {
             Debug.Log("Current Position" + transform.position.y + "is lower than" + deadZone);
             GetOut();
-
         }
-
-
         //rigidbody.AddForce(new Vector2(x * speed, 0));
-
 
 	}
 
@@ -49,6 +45,7 @@ public class player : MonoBehaviour {
         _GM.Setlives(_GM.GetLives() - 1);
         transform.position = startingPosition;
         Debug.Log("You're Out");
-        
     }
+
+
 }

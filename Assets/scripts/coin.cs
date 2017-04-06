@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coin : MonoBehaviour {
+public class coin : MonoBehaviour
+{
+    void OnCollisionEnter2D(Collision2D coll)
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    {
+        var player = coll.gameObject.GetComponent<player>();
+        if(player != null) {
+            gameObject.SetActive(false);
+            FindObjectOfType<GM>().SetPoints(FindObjectOfType<GM>().GetPoints() + 1);
+        }
+} 
 }

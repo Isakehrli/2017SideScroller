@@ -16,6 +16,7 @@ public class player : MonoBehaviour {
 
     private Animator anim;
     public bool air;
+    private SpriteRenderer sr;
 
     void Start () {
         startingPosition = transform.position;
@@ -24,6 +25,7 @@ public class player : MonoBehaviour {
 
         anim = GetComponent<Animator>();
         air = true;
+        sr = GetComponent<SpriteRenderer>();
 
     }
 
@@ -39,6 +41,10 @@ public class player : MonoBehaviour {
         } else {
             anim.SetBool("running", true);
         }
+        if (v.x > 0)
+            sr.flipX = false;
+        else if (v.x < 0)
+            sr.flipX = true;
 
         if (Input.GetButtonDown("Jump") && (v.y ==0 || canFly) ){
             v.y = jumpSpeed;
@@ -65,6 +71,9 @@ public class player : MonoBehaviour {
         _GM.Setlives(_GM.GetLives() - 1);
         transform.position = startingPosition;
         Debug.Log("You're Out");
+    }
+    public void PowerUp(){
+        anim.SetTrigger("powered");
     }
 
     void OnCollisionEnter2D(Collision2D col)  {

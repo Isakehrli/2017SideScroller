@@ -36,21 +36,25 @@ public class player : MonoBehaviour {
         Vector2 v = rigidbody.velocity;
         v.x = x * speed;
         Debug.Log(v.x);
-        if(v.x >0.1 && v.x <-0.1) {
+
+        if (v.x >0.1 && v.x <-0.1) {
             anim.SetBool("running", false);
         } else {
             anim.SetBool("running", true);
         }
         if (v.x > 0)
+        {
             sr.flipX = false;
+        }
         else if (v.x < 0)
+        {
             sr.flipX = true;
-
+        }
         if (Input.GetButtonDown("Jump") && (v.y ==0 || canFly) ){
             v.y = jumpSpeed;
         }
 
-        if(air) {
+        if (v.y !=0) {
             anim.SetBool("air", true);
         } else {
             anim.SetBool("air", false);

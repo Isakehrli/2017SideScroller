@@ -10,6 +10,8 @@ public class player : MonoBehaviour {
     public float deadZone = -5;
     public bool canFly = false;
 
+    public weapon currentWeapon;
+
     new Rigidbody2D rigidbody;
     GM _GM;
     private Vector3 startingPosition;
@@ -61,9 +63,12 @@ public class player : MonoBehaviour {
         }
 
         rigidbody.velocity = v;
-
-        //Check for out
-        if(transform.position.y < deadZone) {
+        // Attack with that weapon if you have
+        if (Input.GetButtonDown("Fire1")&& currentWeapon != null) {
+           currentWeapon.Attack();
+        }
+            //Check for out
+            if (transform.position.y < deadZone) {
             Debug.Log("Current Position" + transform.position.y + "is lower than" + deadZone);
             GetOut();
         }
@@ -80,10 +85,15 @@ public class player : MonoBehaviour {
         anim.SetTrigger("powered");
     }
 
-    void OnCollisionEnter2D(Collision2D col)  {
+    void OnCollisionEnter2D(Collision2D coll)  {
         air = false;
+        var weapon = coll.gameObject.GetComponent<weapon>();
+        if (weapon != null) {
+            weapon.GetPickedup(this);
+            currentWeapon = weapon;
+        }
     }
-    void OnCollisionExit2D(Collision2D col){
+    void OnCollisionExit2D(Collision2D coll){
         air = true;
     }
 }

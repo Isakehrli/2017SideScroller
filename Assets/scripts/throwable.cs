@@ -8,7 +8,7 @@ public class throwable : weapon {
     {
         collider2D.enabled = true;
         rigidbody2D.isKinematic = false;
-        rigidbody2D.velocity = new Vector2();
+        rigidbody2D.velocity = new Vector2(5, 0);
         transform.parent = null;
 
     }

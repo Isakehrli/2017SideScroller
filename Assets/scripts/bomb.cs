@@ -27,6 +27,6 @@ public class bomb : throwable
                     e.gameObject.SetActive(false);
                 }
             }
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
      }
 }

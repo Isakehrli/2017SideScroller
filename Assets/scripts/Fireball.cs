@@ -26,7 +26,7 @@ public class Fireball : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         rb.velocity = new Vector2(velocity.x, -velocity.y);
-        if (collision.collider.tag == "deadly")
+        if (collision.collider.tag == "Immune" || collision.collider.tag == "deadly")
         {
             Destroy(collision.gameObject);
             Explode();
